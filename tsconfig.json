@@ -15,8 +15,8 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "ES2022",
-    "module": "ES2022",
+    "target": "ES2022",     // which version of JS in which the ts code will be compiled.
+    "module": "ES2022",     // which version will be used for modules . (like import , export or require()) .
     "useDefineForClassFields": false,
     "lib": [
       "ES2022",

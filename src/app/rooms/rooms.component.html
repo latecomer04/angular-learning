@@ -1,0 +1,27 @@
+
+
+<!-- Here will see how to bind the data in ts file with the html files -->
+<!-- how interpolation works -> write down the variable name in curly braces  -->
+<h1>Welcome to {{hotelName}}</h1>
+
+
+<!-- you can also bind any variable to any valid property of a html tag -->
+ <div [hidden]="hideRooms">
+    <h2>The no. of rooms</h2>
+    <div [innerText]="noOfRooms"></div> 
+ </div>
+ 
+ <!-- but always remember the property should be valid for that html tag. -->
+
+<!-- Third way to bind the data in ts file with html file is using event binding .
+    so whenever that event will occur , the specified piece of code will be executed.
+-->
+<!-- syntax => in round brackets specify the event 
+    (click)="function_name()"
+-->
+<button (click)="toggle()">Hide Rooms</button>
+
+<!-- so these were the 3 ways of transfering data from html to ts files or vice versa
+    1-> interpolation {{var name }} 2-> property binding [valid html prop] syntax 
+    3-> event binding (event_name) syntax
+-->

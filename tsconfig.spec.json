@@ -8,7 +8,7 @@
     ]
   },
   "include": [
-    "src/**/*.spec.ts",
+    "src/**/*.spec.ts",   // all spec files will be compiled here .
     "src/**/*.d.ts"
   ]
 }
