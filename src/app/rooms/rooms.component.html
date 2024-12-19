@@ -1,17 +1,14 @@
-
-
 <!-- Here will see how to bind the data in ts file with the html files -->
 <!-- how interpolation works -> write down the variable name in curly braces  -->
-<h1>Welcome to {{hotelName}}</h1>
-
+<h1 [ngStyle]="{'color':'blue','font-family':'cursive'}">Welcome to {{ hotelName }}</h1>
 
 <!-- you can also bind any variable to any valid property of a html tag -->
- <div [hidden]="hideRooms">
-    <h2>The no. of rooms</h2>
-    <div [innerText]="noOfRooms"></div> 
- </div>
- 
- <!-- but always remember the property should be valid for that html tag. -->
+<div [hidden]="hideRooms">
+  <h2>The no. of rooms</h2>
+  <div [innerText]="noOfRooms"></div>
+</div>
+
+<!-- but always remember the property should be valid for that html tag. -->
 
 <!-- Third way to bind the data in ts file with html file is using event binding .
     so whenever that event will occur , the specified piece of code will be executed.
@@ -26,12 +23,51 @@
     3-> event binding (event_name) syntax
 -->
 
-
 <!-- *ngIf directive 
 
 The ?? operator in TypeScript and JavaScript is called the nullish coalescing operator. 
 It provides a default value when the left-hand side operand is null or undefined. 
 -->
-<div *ngIf = "(rooms?.availableRooms??0)>0">
-    RoomsList:
-</div> 
+<div *ngIf="(rooms?.availableRooms ?? 0) > 0">RoomsList:</div>
+
+
+<!-- Json pipel -> converts data to json , somtimes useful for debugging
+ should always be used in dev , not for prod -->
+ <!-- <h3>Room List : {{roomList | json }}</h3> -->
+
+
+<table class="table">
+  <tr>
+    <th>Index</th>
+    <th>Room Number</th>
+    <th>Room Type</th>
+    <th>Amenities</th>
+    <th>Price</th>
+    <th>Check-In Time</th>
+    <th>Check-Out Time</th>
+    <th>Ratings </th>
+  </tr>
+  <tr *ngFor="let room of roomList | slice:0:2; let i = index; let e = even; let o = odd;"
+  [ngClass]="e? 'even':'odd'">
+    <td>{{ i }}</td>
+    <td>{{ room.roomNumber }}</td>
+    <td>{{ room.roomType | uppercase }}</td>
+    <td>{{ room.amenities | titlecase }}</td>
+    <td>{{ room.price | currency : 'INR' }}</td>
+    <td>{{ room.checkinTime | date : 'M/d/y'}}</td>
+    <td>{{ room.checkoutTime | date}}</td>
+    <td>{{ room.rating | number : '1.2-2' }}</td> 
+    <!-- syntax for number pipe is -> numberOfDigitsBeforeDecimal.minNumberOfDigitsAfterDecimal-maxNumberOfDigitsAfterDecimal -->
+  </tr>
+</table>
+
+<!-- there is slice pipe as well, to do slice on array .
+ syntax : <tr *ngFor="let room of roomList | slice:0:2; let i = index; let e = even; let o = odd;"
+  [ngClass]="e? 'even':'odd'">
+  slice:0:2 -> 0 is start and 2 is end (not inclusive)
+ -->
+
+ <!-- one more pipe is percent pipe. 
+  converts whole number to percent  => 1 ==> 100 percent, 2 ==> 200 percent etc.
+  syntax : <td>{{ room.roomNumber | percent}}</td>
+  -->

@@ -1,5 +1,5 @@
 import { Component, OnInit , NgModule} from '@angular/core';
-import { Room } from './room';
+import { Room, RoomList } from './room';
 import { CommonModule } from '@angular/common';
 
 
@@ -20,6 +20,41 @@ export class RoomsComponent implements OnInit {
     availableRooms: 0,
     bookedRooms: 10
   }
+
+
+  roomList:RoomList[] =[
+    {
+      roomNumber:1,
+      roomType:"Deluxe",
+      amenities:"Heater,BathTub",
+      price:10000,
+      photos:"https://unsplash.com/photos/gray-bedsprea-w72a24brINI",
+      checkinTime: new Date('12-Nov-2024'),
+      checkoutTime: new Date('15-nov-2024'),
+      rating: 4.45
+    },
+    {
+      roomNumber:2,
+      roomType:"Super-Deluxe",
+      amenities:"Heater,BathTub,Private Bar",
+      price:15000,
+      photos:"https://unsplash.com/photos/gray-bedsprea-w72a24brINI",
+      checkinTime: new Date('14-Nov-2024'),
+      checkoutTime: new Date('16-nov-2024'),
+      rating: 3.9
+    },
+    {
+      roomNumber:3,
+      roomType:"Suite",
+      amenities:"Heater,BathTub,Private Bar,Private Pool",
+      price:20000,
+      photos:"https://unsplash.com/photos/gray-bedsprea-w72a24brINI",
+      checkinTime: new Date('12-Nov-2024'),
+      checkoutTime: new Date('15-nov-2024'),
+      rating:4
+    }
+
+  ]
 
   constructor(){}
   
