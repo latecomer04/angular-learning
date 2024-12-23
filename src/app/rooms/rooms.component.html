@@ -28,46 +28,6 @@
 The ?? operator in TypeScript and JavaScript is called the nullish coalescing operator. 
 It provides a default value when the left-hand side operand is null or undefined. 
 -->
-<div *ngIf="(rooms?.availableRooms ?? 0) > 0">RoomsList:</div>
-
-
-<!-- Json pipel -> converts data to json , somtimes useful for debugging
- should always be used in dev , not for prod -->
- <!-- <h3>Room List : {{roomList | json }}</h3> -->
-
-
-<table class="table">
-  <tr>
-    <th>Index</th>
-    <th>Room Number</th>
-    <th>Room Type</th>
-    <th>Amenities</th>
-    <th>Price</th>
-    <th>Check-In Time</th>
-    <th>Check-Out Time</th>
-    <th>Ratings </th>
-  </tr>
-  <tr *ngFor="let room of roomList | slice:0:2; let i = index; let e = even; let o = odd;"
-  [ngClass]="e? 'even':'odd'">
-    <td>{{ i }}</td>
-    <td>{{ room.roomNumber }}</td>
-    <td>{{ room.roomType | uppercase }}</td>
-    <td>{{ room.amenities | titlecase }}</td>
-    <td>{{ room.price | currency : 'INR' }}</td>
-    <td>{{ room.checkinTime | date : 'M/d/y'}}</td>
-    <td>{{ room.checkoutTime | date}}</td>
-    <td>{{ room.rating | number : '1.2-2' }}</td> 
-    <!-- syntax for number pipe is -> numberOfDigitsBeforeDecimal.minNumberOfDigitsAfterDecimal-maxNumberOfDigitsAfterDecimal -->
-  </tr>
-</table>
-
-<!-- there is slice pipe as well, to do slice on array .
- syntax : <tr *ngFor="let room of roomList | slice:0:2; let i = index; let e = even; let o = odd;"
-  [ngClass]="e? 'even':'odd'">
-  slice:0:2 -> 0 is start and 2 is end (not inclusive)
- -->
-
- <!-- one more pipe is percent pipe. 
-  converts whole number to percent  => 1 ==> 100 percent, 2 ==> 200 percent etc.
-  syntax : <td>{{ room.roomNumber | percent}}</td>
-  -->
+<div *ngIf="(rooms?.availableRooms ?? 0) > 0">
+  <hinv-room-list [rooms]="roomList"></hinv-room-list>
+</div>
