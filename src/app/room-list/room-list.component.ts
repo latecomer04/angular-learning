@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { RoomList } from '../rooms/room';
 
 @Component({
@@ -7,14 +7,21 @@ import { RoomList } from '../rooms/room';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './room-list.component.html',
-  styleUrl: './room-list.component.scss' 
+  styleUrl: './room-list.component.scss',
+  encapsulation:ViewEncapsulation.None
 })
 
 export class RoomListComponent implements OnInit {
 
+
   @Input() rooms:RoomList[]=[];
+  @Output() selectedRoom = new EventEmitter<RoomList>();
 
   ngOnInit(): void {
       
+  }
+
+  selectRoom(room:RoomList){
+    this.selectedRoom.emit(room);
   }
 }

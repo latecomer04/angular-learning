@@ -1,6 +1,6 @@
 import { Component, OnInit , NgModule} from '@angular/core';
 import { Room, RoomList } from './room';
-import { CommonModule } from '@angular/common';
+import { CommonModule, JsonPipe } from '@angular/common';
 import { RoomListComponent } from '../room-list/room-list.component';
 
 
@@ -29,6 +29,7 @@ export class RoomsComponent implements OnInit {
   toggle(){
     this.hideRooms=!this.hideRooms;
   }
+  selectedRoom:RoomList | undefined;
   
   ngOnInit(): void {
     this.roomList = [
@@ -63,5 +64,9 @@ export class RoomsComponent implements OnInit {
         rating:4
       }  
     ]
+  }
+
+  selectRoom(room:RoomList){
+    this.selectedRoom=room;
   }
 }
