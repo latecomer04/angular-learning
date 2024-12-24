@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { RoomList } from '../rooms/room';
 
 @Component({
@@ -8,7 +8,7 @@ import { RoomList } from '../rooms/room';
   imports: [CommonModule],
   templateUrl: './room-list.component.html',
   styleUrl: './room-list.component.scss',
-  encapsulation:ViewEncapsulation.None
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 
 export class RoomListComponent implements OnInit {

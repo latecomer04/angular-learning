@@ -18,15 +18,21 @@
 <!-- syntax => in round brackets specify the event 
     (click)="function_name()"
 -->
-<button (click)="toggle()">Hide Rooms</button>
+<div class="button-class">
+  <button (click)="toggle()" class="btn btn-primary">Hide Rooms</button>
+</div>
 
 <!-- so these were the 3 ways of transfering data from html to ts files or vice versa
     1-> interpolation {{var name }} 2-> property binding [valid html prop] syntax 
     3-> event binding (event_name) syntax
 -->
 
-<div *ngIf="selectedRoom">
+<!-- <div *ngIf="selectedRoom">
   {{ selectedRoom | json }}
+</div> -->
+
+<div class="button-class">
+  <button (click)="addRoom()" class="btn btn-primary">Add Room</button>
 </div>
 
 <!-- *ngIf directive 
