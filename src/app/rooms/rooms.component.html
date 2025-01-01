@@ -40,9 +40,10 @@
 The ?? operator in TypeScript and JavaScript is called the nullish coalescing operator. 
 It provides a default value when the left-hand side operand is null or undefined. 
 -->
-<div *ngIf="(rooms?.availableRooms ?? 0) > 0">
+<div *ngIf="(rooms.availableRooms??0 > 0)">
   <hinv-room-list
     [rooms]="roomList"
     (selectedRoom)="selectRoom($event)"
+    [title]="title"
   ></hinv-room-list>
 </div>

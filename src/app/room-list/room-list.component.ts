@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { CommonModule, LowerCasePipe, TitleCasePipe, UpperCasePipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { RoomList } from '../rooms/room';
 
 @Component({
@@ -12,10 +12,10 @@ import { RoomList } from '../rooms/room';
 })
 
 export class RoomListComponent implements OnInit {
-
-
+  
   @Input() rooms:RoomList[]=[];
   @Output() selectedRoom = new EventEmitter<RoomList>();
+  @Input() title: string = "";
 
   ngOnInit(): void {
       
@@ -23,5 +23,10 @@ export class RoomListComponent implements OnInit {
 
   selectRoom(room:RoomList){
     this.selectedRoom.emit(room);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.title = changes['title']?.currentValue.toUpperCase();
+    console.log(changes['title']);
   }
 }
