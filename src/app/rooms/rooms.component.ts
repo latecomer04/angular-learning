@@ -1,17 +1,28 @@
-import { Component, OnInit , NgModule} from '@angular/core';
+import { Component, OnInit , NgModule, AfterViewInit, ViewChild, ViewChildren, QueryList} from '@angular/core';
 import { Room, RoomList } from './room';
 import { CommonModule, JsonPipe } from '@angular/common';
 import { RoomListComponent } from '../room-list/room-list.component';
+import { HeaderComponent } from '../header/header.component';
 
 
 @Component({
   selector: 'hinv-rooms',
   standalone: true,
-  imports: [CommonModule,RoomListComponent],
+  imports: [CommonModule,RoomListComponent,HeaderComponent],
   templateUrl: './rooms.component.html',
   styleUrl: './rooms.component.scss'
 })
-export class RoomsComponent implements OnInit {
+export class RoomsComponent implements OnInit,AfterViewInit {
+
+  @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
+  //@ViewChild(HeaderComponent , {static : true}) headerComponent!: HeaderComponent;
+
+  // when you have mulitple viewchild , then use @ViewChildren(type) name:QueryList<type>;
+  // it has static:false by default bcoz it is less probable that multiple children will get
+  // initialized in ngOnInit() .
+  // methods provided -> first,last,results  
+  @ViewChildren(HeaderComponent) headerComponentChildren!: QueryList<HeaderComponent>;
+
 
   hotelName = "Hilton Hotel";
   noOfRooms = 10;
@@ -66,6 +77,13 @@ export class RoomsComponent implements OnInit {
         rating:4
       }  
     ]
+    //this.headerComponent.title = "Hotel Rand"    -> will work in init if static is true;
+  }
+
+  ngAfterViewInit(): void {
+      this.headerComponent.title = "Hotel Taj"
+      this.headerComponentChildren.last.title = "New Delhi";
+      console.log(this.headerComponentChildren);
   }
 
   selectRoom(room:RoomList){
